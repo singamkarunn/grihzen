@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.db
+grihzen_data/
+files/grihzen_data/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
