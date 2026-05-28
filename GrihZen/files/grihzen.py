@@ -30,13 +30,14 @@ st.set_page_config(page_title="GrihZen", page_icon="🏡", layout="wide", initia
 
 # ── COLORS ────────────────────────────────────────────────────────────────────
 C = {
-    "blue_darkest":"#0a1628","blue_dark":"#0f2547","blue_primary":"#1a3a6c",
-    "blue_medium":"#1d4ed8","blue_light":"#3b82f6","blue_lighter":"#60a5fa",
-    "blue_pale":"#dbeafe","green_dark":"#064e3b","green_primary":"#059669",
-    "green_light":"#10b981","green_pale":"#d1fae5","white":"#ffffff",
-    "off_white":"#f8fafc","gray_100":"#f1f5f9","gray_200":"#e2e8f0",
-    "gray_400":"#94a3b8","gray_600":"#475569","black":"#0f172a",
-    "danger":"#ef4444","warning":"#f59e0b","success":"#10b981",
+    # Primary brand (matches signup_ui.py)
+    "blue_darkest":"#0a1628","blue_dark":"#0F2742","blue_primary":"#2F6FE0",
+    "blue_medium":"#4A8BF0","blue_light":"#7AB3F5","blue_lighter":"#A8CAFA",
+    "blue_pale":"#EEF4FF","green_dark":"#1FB373","green_primary":"#2CD68E",
+    "green_light":"#5DEAAA","green_pale":"#E8FBF4","white":"#ffffff",
+    "off_white":"#F6F9FD","gray_100":"#F6F9FD","gray_200":"#E5EAF2",
+    "gray_400":"#8A96A8","gray_600":"#4A5B73","black":"#0F2742",
+    "danger":"#D9445F","warning":"#F59E0B","success":"#2CD68E",
     "purple":"#7c3aed","purple_pale":"#ede9fe",
 }
 
@@ -517,42 +518,42 @@ def genetic(locs,start,end=None,pop=30,gens=100):
 # ── CSS ───────────────────────────────────────────────────────────────────────
 def inject_css():
     st.markdown(f"""<style>
-    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@700;800;900&display=swap');
     *{{margin:0;padding:0;box-sizing:border-box;}}
-    html,body,[class*="css"]{{font-family:'Plus Jakarta Sans',sans-serif;background:{C["off_white"]};color:{C["black"]};}}
+    html,body,[class*="css"]{{font-family:'Inter',system-ui,sans-serif;background:{C["off_white"]};color:{C["black"]};}}
     .stApp{{background:{C["off_white"]};}}
     #MainMenu,footer,header{{visibility:hidden;}}
     .stDeployButton,.stDecoration,[data-testid="stToolbar"]{{display:none;}}
     section[data-testid="stSidebar"]{{display:none;}}
     .block-container{{padding-top:0!important;padding-bottom:5rem!important;}}
-    ::-webkit-scrollbar{{width:6px;}}
-    ::-webkit-scrollbar-thumb{{background:{C["blue_light"]};border-radius:3px;}}
+    ::-webkit-scrollbar{{width:5px;}}
+    ::-webkit-scrollbar-thumb{{background:{C["gray_200"]};border-radius:3px;}}
     /* NAVBAR */
-    .gz-navbar{{background:linear-gradient(135deg,{C["blue_darkest"]} 0%,{C["blue_primary"]} 100%);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999;box-shadow:0 4px 24px rgba(10,22,40,.5);backdrop-filter:blur(10px);}}
-    .gz-logo{{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:900;color:white;display:flex;align-items:center;gap:.6rem;letter-spacing:-.5px;}}
-    .gz-logo span{{background:linear-gradient(135deg,{C["blue_lighter"]},{C["green_light"]});-webkit-background-clip:text;-webkit-text-fill-color:transparent;}}
-    .gz-user-badge{{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);color:rgba(255,255,255,.9);padding:.4rem 1rem;border-radius:20px;font-size:.85rem;font-weight:600;backdrop-filter:blur(4px);}}
-    .gz-household-badge{{background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.35);color:rgba(255,255,255,.9);padding:.3rem .8rem;border-radius:20px;font-size:.78rem;font-weight:600;}}
+    .gz-navbar{{background:#fff;border-bottom:1px solid {C["gray_200"]};padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999;box-shadow:0 2px 12px rgba(15,39,66,.06);}}
+    .gz-logo{{font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:{C["black"]};display:flex;align-items:center;gap:.6rem;letter-spacing:-.03em;}}
+    .gz-logo span{{background:linear-gradient(135deg,{C["blue_medium"]},{C["green_primary"]});-webkit-background-clip:text;-webkit-text-fill-color:transparent;}}
+    .gz-user-badge{{background:{C["blue_pale"]};border:1px solid {C["gray_200"]};color:{C["blue_primary"]};padding:.35rem .9rem;border-radius:20px;font-size:.82rem;font-weight:600;}}
+    .gz-household-badge{{background:{C["green_pale"]};border:1px solid rgba(44,214,142,.25);color:{C["green_dark"]};padding:.3rem .8rem;border-radius:20px;font-size:.78rem;font-weight:600;}}
     /* CARDS */
-    .gz-card{{background:{C["white"]};border-radius:18px;padding:1.5rem;box-shadow:0 2px 16px rgba(0,0,0,.06),0 0 0 1px {C["gray_200"]};margin-bottom:1rem;transition:box-shadow .2s;}}
-    .gz-card:hover{{box-shadow:0 6px 28px rgba(0,0,0,.1),0 0 0 1px {C["gray_200"]};}}
-    .gz-card-blue{{background:linear-gradient(135deg,{C["blue_primary"]} 0%,{C["blue_medium"]} 100%);color:white;border:none;box-shadow:0 4px 20px rgba(29,78,216,.3);}}
-    .gz-card-green{{background:linear-gradient(135deg,{C["green_dark"]} 0%,{C["green_primary"]} 100%);color:white;border:none;box-shadow:0 4px 20px rgba(5,150,105,.3);}}
-    .gz-card-purple{{background:linear-gradient(135deg,{C["purple"]} 0%,#9333ea 100%);color:white;border:none;box-shadow:0 4px 20px rgba(124,58,237,.3);}}
-    .gz-card-ai{{background:linear-gradient(135deg,#1e1b4b 0%,{C["purple"]} 60%,{C["blue_medium"]} 100%);color:white;border:none;box-shadow:0 8px 32px rgba(124,58,237,.4);border-radius:20px;padding:2rem;}}
+    .gz-card{{background:{C["white"]};border-radius:16px;padding:1.5rem;box-shadow:0 2px 16px rgba(15,39,66,.06);border:1px solid {C["gray_200"]};margin-bottom:1rem;transition:box-shadow .2s,transform .2s;}}
+    .gz-card:hover{{box-shadow:0 8px 30px rgba(15,39,66,.1);transform:translateY(-1px);}}
+    .gz-card-blue{{background:linear-gradient(135deg,{C["blue_primary"]} 0%,{C["blue_medium"]} 100%);color:white;border:none;box-shadow:0 6px 24px rgba(47,111,224,.3);}}
+    .gz-card-green{{background:linear-gradient(135deg,{C["green_dark"]} 0%,{C["green_primary"]} 100%);color:white;border:none;box-shadow:0 6px 24px rgba(31,179,115,.3);}}
+    .gz-card-purple{{background:linear-gradient(135deg,{C["purple"]} 0%,#9333ea 100%);color:white;border:none;box-shadow:0 6px 24px rgba(124,58,237,.3);}}
+    .gz-card-ai{{background:linear-gradient(135deg,{C["blue_primary"]} 0%,{C["purple"]} 60%,{C["green_primary"]} 100%);color:white;border:none;box-shadow:0 8px 32px rgba(47,111,224,.35);border-radius:20px;padding:2rem;}}
     /* STATS */
-    .gz-stat{{background:{C["white"]};border-radius:18px;padding:1.25rem;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.05),0 0 0 1px {C["gray_200"]};transition:transform .2s,box-shadow .2s;}}
-    .gz-stat:hover{{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.12);}}
-    .gz-stat-value{{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:{C["blue_primary"]};line-height:1;margin-bottom:.25rem;}}
+    .gz-stat{{background:{C["white"]};border-radius:16px;padding:1.25rem;text-align:center;box-shadow:0 2px 12px rgba(15,39,66,.05);border:1px solid {C["gray_200"]};transition:transform .2s,box-shadow .2s;}}
+    .gz-stat:hover{{transform:translateY(-3px);box-shadow:0 10px 28px rgba(15,39,66,.1);}}
+    .gz-stat-value{{font-family:'Inter',sans-serif;font-size:2rem;font-weight:800;color:{C["blue_primary"]};line-height:1;margin-bottom:.25rem;}}
     .gz-stat-label{{font-size:.72rem;font-weight:700;color:{C["gray_400"]};text-transform:uppercase;letter-spacing:.8px;}}
     .gz-stat-green .gz-stat-value{{color:{C["green_primary"]};}}
     .gz-stat-purple .gz-stat-value{{color:{C["purple"]};}}
-    /* WELCOME */
-    .gz-welcome{{background:linear-gradient(135deg,{C["blue_darkest"]} 0%,{C["blue_primary"]} 55%,{C["blue_medium"]} 100%);border-radius:22px;padding:2.25rem 2rem;color:white;margin-bottom:1.5rem;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(10,22,40,.35);}}
-    .gz-welcome::before{{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(96,165,250,.15) 0%,transparent 70%);pointer-events:none;}}
-    .gz-welcome::after{{content:'🏡';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:5.5rem;opacity:.12;}}
-    .gz-welcome h1{{font-family:'Outfit',sans-serif;font-size:1.9rem;font-weight:900;margin-bottom:.3rem;letter-spacing:-.5px;}}
-    .gz-welcome p{{color:rgba(255,255,255,.65);font-size:.9rem;}}
+    /* WELCOME BANNER */
+    .gz-welcome{{background:linear-gradient(135deg,{C["blue_primary"]} 0%,{C["blue_medium"]} 60%,{C["green_primary"]} 100%);border-radius:20px;padding:2.25rem 2rem;color:white;margin-bottom:1.5rem;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(47,111,224,.3);}}
+    .gz-welcome::before{{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(255,255,255,.1) 0%,transparent 70%);pointer-events:none;}}
+    .gz-welcome::after{{content:'🏡';position:absolute;right:2rem;top:50%;transform:translateY(-50%);font-size:5rem;opacity:.15;}}
+    .gz-welcome h1{{font-family:'Inter',sans-serif;font-size:1.8rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.04em;}}
+    .gz-welcome p{{color:rgba(255,255,255,.7);font-size:.9rem;}}
     /* NAV BARS */
     .gz-nbar{{margin-bottom:.75rem;}}
     .gz-nl{{display:flex;justify-content:space-between;font-size:.8rem;font-weight:600;color:{C["gray_600"]};margin-bottom:.25rem;}}
@@ -675,68 +676,92 @@ def plotly_chart(fig):
 
 # ── LOGIN PAGE ────────────────────────────────────────────────────────────────
 def show_login():
+    # Override to clean white surface — matches signup_ui.py brand
     st.markdown(f"""<style>
-    .stApp{{background:linear-gradient(135deg,{C["blue_darkest"]},{C["blue_primary"]},{C["blue_dark"]})!important;}}
-    .block-container{{padding:0!important;}}
-    div[data-testid="stTabs"]>div[role="tablist"]{{background:rgba(255,255,255,.15)!important;}}
-    div[data-testid="stTabs"] button[aria-selected="true"]{{background:white!important;color:{C["blue_medium"]}!important;}}
-    div[data-testid="stTabs"] button[role="tab"]{{color:rgba(255,255,255,.7)!important;font-weight:600;}}
+    .stApp{{background:#F6F9FD!important;}}
+    .block-container{{padding-top:2.5rem!important;max-width:520px;margin:0 auto;}}
+    /* Login card */
+    .gz-login-card{{background:#fff;border:1px solid #E5EAF2;border-radius:20px;padding:36px 40px;box-shadow:0 24px 60px rgba(11,26,46,.07);}}
+    /* Tab strip override for login */
+    div[data-testid="stTabs"]>div[role="tablist"]{{background:#F6F9FD!important;border:1px solid #E5EAF2!important;border-radius:12px!important;padding:4px!important;gap:2px!important;}}
+    div[data-testid="stTabs"] button[role="tab"]{{color:#4A5B73!important;font-weight:600!important;border-radius:9px!important;}}
+    div[data-testid="stTabs"] button[aria-selected="true"]{{background:#fff!important;color:{C["blue_primary"]}!important;box-shadow:0 2px 8px rgba(0,0,0,.08)!important;}}
+    /* Primary button — blue→green gradient */
+    .stButton>button{{background:linear-gradient(135deg,{C["blue_medium"]} 0%,{C["green_primary"]} 100%)!important;color:#fff!important;border:0!important;height:46px!important;border-radius:10px!important;font-weight:600!important;font-size:15px!important;box-shadow:0 6px 18px rgba(47,111,224,.25)!important;transition:filter .15s!important;}}
+    .stButton>button:hover{{filter:brightness(1.06)!important;transform:none!important;}}
+    /* Inputs */
+    .stTextInput>div>div>input{{height:44px!important;border-radius:10px!important;border:1.5px solid #E5EAF2!important;font-size:15px!important;padding:0 14px!important;background:#fff!important;color:#0F2742!important;transition:border-color .15s,box-shadow .15s!important;}}
+    .stTextInput>div>div>input:focus{{border-color:{C["blue_medium"]}!important;box-shadow:0 0 0 4px rgba(74,139,240,.12)!important;}}
+    .stTextInput label{{font-size:13px!important;font-weight:500!important;color:#0F2742!important;}}
     </style>""",unsafe_allow_html=True)
-    st.markdown('<div style="height:3rem"></div>',unsafe_allow_html=True)
-    _,col,_=st.columns([1,1.4,1])
-    with col:
-        # ICON
-        if APP_ICON:
-            _,ic,_=st.columns([1.2,1,1.2])
-            with ic: st.image(f"data:image/png;base64,{APP_ICON}",width=100)
-        else:
-            st.markdown('<div style="text-align:center;font-size:4rem;">🏡</div>',unsafe_allow_html=True)
-        st.markdown('<div style="text-align:center;margin:.75rem 0 1.5rem;"><div style="font-family:Outfit,sans-serif;font-size:2.4rem;font-weight:900;color:white;letter-spacing:-1px;">GrihZen</div><div style="color:rgba(255,255,255,.5);font-size:.9rem;">Your Zen for Home Life</div></div>',unsafe_allow_html=True)
-        tl,ts,tf=st.tabs(["🔑  Sign In","✨  Create Account","🔓  Reset Password"])
-        with tl:
-            un=st.text_input("Username",placeholder="Enter your username",key="li_u")
-            pw=st.text_input("Password",placeholder="Enter your password",type="password",key="li_p")
-            if st.button("Sign In →",use_container_width=True,type="primary",key="btn_li"):
-                if un and pw:
-                    u=authenticate_user(un,pw)
-                    if u:
-                        st.session_state.user_id=u[0]; st.session_state.username=u[1]
-                        st.session_state.display_name=u[2]; st.session_state.logged_in=True
-                        st.rerun()
-                    else: st.error("❌ Incorrect username or password")
-                else: st.warning("Please enter username and password")
-            st.markdown('<div style="text-align:center;margin-top:.75rem;font-size:.78rem;color:rgba(255,255,255,.4);">🔒 Secure · Private · Self-Hosted</div>',unsafe_allow_html=True)
-        with ts:
-            ca,cb=st.columns(2)
-            with ca: nd=st.text_input("Full Name",placeholder="Karun Singh",key="su_n")
-            with cb: nu=st.text_input("Username",placeholder="karun123",key="su_u")
-            np1=st.text_input("Password (min 6 chars)",type="password",placeholder="••••••••",key="su_p1")
-            np2=st.text_input("Confirm Password",type="password",placeholder="••••••••",key="su_p2")
-            npin=st.text_input("PIN for password reset (optional, 4 digits)",placeholder="1234",max_chars=4,key="su_pin")
-            if st.button("Create Account →",use_container_width=True,type="primary",key="btn_su"):
-                if not all([nd,nu,np1,np2]): st.warning("⚠️ Please fill all required fields")
-                elif len(np1)<6: st.error("❌ Password must be at least 6 characters")
-                elif np1!=np2: st.error("❌ Passwords don't match")
-                else:
-                    ok=create_user(nu,nd,np1,npin if npin else None)
-                    if ok: st.success("✅ Account created! Sign in and create your household"); st.balloons()
-                    else: st.error("❌ Username already taken")
-        with tf:
-            st.markdown('<div style="font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:1rem;text-align:center;">Reset your password using your PIN</div>',unsafe_allow_html=True)
-            fu=st.text_input("Username",key="fp_u")
-            fpin=st.text_input("Your 4-digit PIN",max_chars=4,key="fp_pin")
-            fnp=st.text_input("New Password",type="password",key="fp_np")
-            fnp2=st.text_input("Confirm New Password",type="password",key="fp_np2")
-            if st.button("Reset Password →",use_container_width=True,type="primary",key="btn_fp"):
-                if not all([fu,fpin,fnp,fnp2]): st.warning("⚠️ Fill all fields")
-                elif len(fnp)<6: st.error("❌ Min 6 characters")
-                elif fnp!=fnp2: st.error("❌ Passwords don't match")
-                else:
-                    result=reset_password_with_pin(fu,fpin,fnp)
-                    if result=="ok": st.success("✅ Password reset! Sign in now")
-                    elif result=="no_user": st.error("❌ Username not found")
-                    elif result=="no_pin": st.error("❌ No PIN set for this account")
-                    else: st.error("❌ Incorrect PIN")
+
+    # ── Logo & hero ───────────────────────────────────────────────────────────
+    st.markdown(f"""
+    <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px;">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="lgz" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="{C['blue_medium']}"/>
+            <stop offset="50%" stop-color="#3FB8C2"/>
+            <stop offset="100%" stop-color="{C['green_primary']}"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(74,139,240,0.2)" stroke-width="1.5"/>
+        <line x1="22" y1="28" x2="78" y2="28" stroke="url(#lgz)" stroke-width="9" stroke-linecap="round"/>
+        <line x1="78" y1="28" x2="22" y2="72" stroke="url(#lgz)" stroke-width="9" stroke-linecap="round"/>
+        <line x1="22" y1="72" x2="78" y2="72" stroke="url(#lgz)" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="22" cy="28" r="7" fill="#fff" stroke="{C['blue_medium']}" stroke-width="2"/>
+        <circle cx="78" cy="28" r="7" fill="#fff" stroke="{C['blue_medium']}" stroke-width="2"/>
+        <circle cx="22" cy="72" r="7" fill="#fff" stroke="{C['green_primary']}" stroke-width="2"/>
+        <circle cx="78" cy="72" r="7" fill="#fff" stroke="{C['green_primary']}" stroke-width="2"/>
+      </svg>
+      <span style="font-family:'Inter',sans-serif;font-weight:700;font-size:26px;color:#0F2742;letter-spacing:-.02em;">Grih<span style="background:linear-gradient(135deg,{C['blue_medium']},{C['green_primary']});-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Zen</span></span>
+    </div>
+    <p style="text-align:center;color:#8A96A8;font-size:13px;margin-bottom:24px;font-family:'Inter',sans-serif;">Your Zen for Home Life</p>
+    """, unsafe_allow_html=True)
+
+    # ── Card ──────────────────────────────────────────────────────────────────
+    st.markdown('<div class="gz-login-card">', unsafe_allow_html=True)
+    tl,ts,tf=st.tabs(["🔑  Sign In","✨  Create Account","🔓  Reset Password"])
+    with tl:
+        st.markdown('<div style="height:.25rem"></div>',unsafe_allow_html=True)
+        un=st.text_input("Username",placeholder="Enter your username",key="li_u")
+        pw=st.text_input("Password",placeholder="Enter your password",type="password",key="li_p")
+        st.markdown('<div style="height:.25rem"></div>',unsafe_allow_html=True)
+        if st.button("Sign In →",use_container_width=True,type="primary",key="btn_li"):
+            if un and pw:
+                u=authenticate_user(un,pw)
+                if u:
+                    st.session_state.user_id=u[0]; st.session_state.username=u[1]
+                    st.session_state.display_name=u[2]; st.session_state.logged_in=True
+                    st.rerun()
+                else: st.error("❌ Incorrect username or password")
+            else: st.warning("Please enter username and password")
+        st.markdown(f'<div style="text-align:center;margin-top:.75rem;font-size:.75rem;color:#8A96A8;">🔒 Secure · Private · Self-Hosted</div>',unsafe_allow_html=True)
+    with ts:
+        st.markdown('<div style="height:.25rem"></div>',unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:14px;color:#4A5B73;margin-bottom:16px;">Create your account with our guided setup wizard — takes less than a minute.</p>',unsafe_allow_html=True)
+        if st.button("✨ Open Sign-up Wizard →",use_container_width=True,type="primary",key="btn_su_wizard"):
+            st.session_state.su_show=True; st.session_state.su_step=1; st.rerun()
+        st.markdown(f'<p style="font-size:12px;color:#8A96A8;text-align:center;margin-top:.75rem;">Step-by-step · Password strength meter · Household setup included</p>',unsafe_allow_html=True)
+    with tf:
+        st.markdown('<div style="height:.25rem"></div>',unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:13px;color:#4A5B73;margin-bottom:12px;text-align:center;">Reset your password using your recovery PIN</p>',unsafe_allow_html=True)
+        fu=st.text_input("Username",key="fp_u")
+        fpin=st.text_input("Recovery PIN (4 digits)",max_chars=4,key="fp_pin")
+        fnp=st.text_input("New Password",type="password",key="fp_np")
+        fnp2=st.text_input("Confirm New Password",type="password",key="fp_np2")
+        if st.button("Reset Password →",use_container_width=True,type="primary",key="btn_fp"):
+            if not all([fu,fpin,fnp,fnp2]): st.warning("⚠️ Fill all fields")
+            elif len(fnp)<6: st.error("❌ Min 6 characters")
+            elif fnp!=fnp2: st.error("❌ Passwords don't match")
+            else:
+                result=reset_password_with_pin(fu,fpin,fnp)
+                if result=="ok": st.success("✅ Password reset! Sign in now")
+                elif result=="no_user": st.error("❌ Username not found")
+                elif result=="no_pin": st.error("❌ No PIN set for this account")
+                else: st.error("❌ Incorrect PIN")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ── HOUSEHOLD SETUP PAGE ──────────────────────────────────────────────────────
 def show_household_setup(uid, user):
@@ -1441,6 +1466,11 @@ def show_ai_chat(uid, hid):
 # ── MAIN ──────────────────────────────────────────────────────────────────────
 def main():
     init_db(); inject_css()
+
+    # Sign-up wizard (intercepts before login check)
+    if st.session_state.get("su_show") and not st.session_state.get("logged_in"):
+        from signup_ui import show_signup_wizard
+        show_signup_wizard(); return
 
     # Not logged in
     if not st.session_state.get("logged_in"):
